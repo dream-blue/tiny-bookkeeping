@@ -30,6 +30,7 @@
 
 <script>
 import VueCookies from 'vue-cookies'
+import qs from 'qs'
 export default{
   name: 'login',
   data () {
@@ -59,9 +60,12 @@ export default{
             user_id:user_id,
             user_token:cookie
           }
-          VueCookies.set("forend_token_str", response_cookie, expireDays)
+          VueCookies.set("forend_token_str", qs.stringify(response_cookie), expireDays)
           let token_str = $cookies.get("forend_token_str")
-          console.log("token str in login",token_str)
+          console.log("token str in login",token_str, typeof(token_str))
+          // $cookies.remove('forend_token_str')
+          //   let token_str_after = $cookies.get("forend_token_str")
+          // console.log("token str in login after remove",token_str_after)
         }
       ).catch(function (error) {
         if(error.response){
