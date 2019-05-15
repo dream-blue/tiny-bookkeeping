@@ -24,7 +24,7 @@
       </li>
       <li>
         <a
-          href="http://localhost:8080/#/input"
+          href="http://localhost:8080/#/refer"
           target="_blank"
         >
           write your bill tip

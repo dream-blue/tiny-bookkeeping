@@ -30,62 +30,69 @@
 <script>
   export default {
     name: "GetDetail",
-    data () {
+    data() {
       return {
-        start_time : '',
-        end_time : ''
+        start_time: '',
+        end_time: ''
       }
     },
     methods: {
-      submit:function () {
+      submit: function () {
         let data = {
           start_time: this.start_time,
           end_time: this.end_time
+        }
+        let token = $cookies.get("forend_token_str")
+        console.log('>>>', token)
+        if (token) {
+          data.forend_token_str = token
+        } else {
+          redirect('/login')
         }
         this.axios.get('http://localhost:5000/api/v1/bill', data).then(
           function (response) {
             console.log(response.data)
             console.log(response.status)
             console.log(response.config)
-            //  if($cookies.get("forend_token_str")){
-            //   let data_obj = response.data
-            // let table = document.getElementsByTagName("table")[0]
-            // for (item in data_obj)  // x 为属性名
-            //     {
-            //       let tr_tag = document.createElement("tr")
-            //       let td_time = document.createElement("td")
-            //       let td_remarks = document.createElement("td")
-            //       let td_money = document.createElement("td")
-            //       table.push(tr_tag)
-            //       td_time.innerHTML(item.time);
-            //       td_remarks.innerHTML(item.remarks)
-            //       td_money.innerHTML(item.money)
-            //       tr_tag.push(td_time)
-            //       tr_tag.push(td_remarks)
-            //       tr_tag.push(td_money)
-            //     }
-            //     let tr_tag = document.createElement("tr")
-            //     let td_total_tag = document.createElement("td")
-            //     let td_num_tag = document.createElement("td")
-            //     table.push(tr_tag)
-            //     td_total_tag.innerHTML("total")
-            //     td_total_tag.style.fontSize='30px'
-            //     td_num_tag.innerHTML(data.total)
-            //     td_num_tag.style.fontSize='30px'
-            //     tr_tag.push(td_total_tag)
-            //     tr_tag.push(td_num_tag)
-            //  }else{redirect('/login')}
+            let data_obj = response.data
+            let table = document.getElementsByTagName("table")[0]
+            for (item in data_obj)
+            {
+              console.log("item>>detail", item)
+              let tr_tag = document.createElement("tr")
+              let td_time = document.createElement("td")
+              let td_remarks = document.createElement("td")
+              let td_money = document.createElement("td")
+              table.push(tr_tag)
+              td_time.innerHTML(item.time);
+              td_remarks.innerHTML(item.remarks)
+              td_money.innerHTML(item.money)
+              tr_tag.push(td_time)
+              tr_tag.push(td_remarks)
+              tr_tag.push(td_money)
+            }
+            let tr_tag = document.createElement("tr")
+            let td_total_tag = document.createElement("td")
+            let td_num_tag = document.createElement("td")
+            table.push(tr_tag)
+            td_total_tag.innerHTML("total")
+            td_total_tag.style.fontSize = '30px'
+            td_num_tag.innerHTML(data.total)
+            td_num_tag.style.fontSize = '30px'
+            tr_tag.push(td_total_tag)
+            tr_tag.push(td_num_tag)
+
           }
         ).catch(
           function (error) {
-                if(error.response){
-                  console.log(error.response.data)
-                  console.log(error.response.status)
-                  console.log(error.response.headers)
-                }else{
-                  console.log(error.message)
-                  console.log(error.config)
-                }
+            if (error.response) {
+              console.log(error.response.data)
+              console.log(error.response.status)
+              console.log(error.response.headers)
+            } else {
+              console.log(error.message)
+              console.log(error.config)
+            }
           }
         )
       }

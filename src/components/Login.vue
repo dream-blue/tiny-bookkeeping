@@ -29,7 +29,7 @@
 </template>
 
 <script>
-  import VueCookies from 'vue-cookies'
+import VueCookies from 'vue-cookies'
 export default{
   name: 'login',
   data () {
@@ -48,21 +48,24 @@ export default{
         function(response){
           console.log("login then>>")
           let data = response.data
-          console.log(response.data)
+          console.log(data)
           console.log(response.status)
           console.log(response.config)
           let expireDays = 1000 * 60 * 60
           let cookie = data.forend_token_str
           let user_id = data.user_id
+          // console.log("data-data",cookie,user_id)
           let response_cookie = {
             user_id:user_id,
             user_token:cookie
           }
           VueCookies.set("forend_token_str", response_cookie, expireDays)
+          let token_str = $cookies.get("forend_token_str")
+          console.log("token str in login",token_str)
         }
       ).catch(function (error) {
         if(error.response){
-           console.log("axios login catch>>>")
+          console.log("axios login catch>>>")
           console.log(error.response.data)
           console.log(error.response.status)
           console.log(error.response.config)

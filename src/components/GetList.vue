@@ -45,10 +45,6 @@
                   console.log(response.data)
                   console.log(response.status)
                   console.log(response.config)
-                   // if($cookies.get("forend_token_str")){}else{}
-
-
-
                 }
 
               ).catch(function (error) {

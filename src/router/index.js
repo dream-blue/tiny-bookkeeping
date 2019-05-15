@@ -4,7 +4,7 @@ import HelloWorld from '@/components/HelloWorld'
 import Index from '@/components/Index'
 import Login from '@/components/Login'
 import Register from '@/components/Register'
-import Input from '@/components/Input'
+import Referring from '@/components/Referring'
 import GetList from '@/components/GetList'
 import GetDetail from '@/components/GetDetail'
 Vue.use(Router)
@@ -32,9 +32,12 @@ export default new Router({
       component: Login
     },
     {
-      path: '/input',
-      name: 'Input',
-      component: Input
+      path: '/refer',
+      name: 'Referring',
+      meta: {
+        requireAuth:true
+      },
+      component: Referring
     },
      {
       path: '/get_list',
@@ -44,6 +47,9 @@ export default new Router({
      {
       path: '/get_detail',
       name: 'GetDetail',
+       meta: {
+        requireAuth:true
+      },
       component: GetDetail
     },
   ]

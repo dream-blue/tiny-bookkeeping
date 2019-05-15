@@ -11,7 +11,7 @@ Vue.use(VueCookies)
 Vue.use(VueAxios, axios)
 Vue.config.productionTip = false;
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
-
+axios.defaults.headers.Authorization = `token ${$cookies.get("forend_token_str")}`
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

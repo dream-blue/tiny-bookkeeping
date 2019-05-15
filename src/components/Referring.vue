@@ -30,7 +30,7 @@
 
 <script>
     export default {
-        name: "input",
+        name: "referring",
       data () {
           return {
             money: '',
@@ -39,17 +39,21 @@
       },
       methods:{
           submit:function () {
-
             let data = {
               money : this.money,
               remarks : this.remarks
             }
+            let token = $cookies.get("forend_token_str")
+            console.log('>>>',token)
+            if(token){
+              data.forend_token_str = token
+            }else{redirect('/login')}
             this.axios.post('http://localhost:5000/api/v1/bill', data).then(
               function (response) {
                 console.log(response.data)
                 console.log(response.status)
                 console.log(response.config)
-                if($cookies.get("forend_token_str")){}else{}
+
               }
             ).catch(function(error){
               if(error.response){
