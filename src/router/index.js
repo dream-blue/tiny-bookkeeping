@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
-import Index from '@/components/Index'
+import Out from '@/components/Out'
 import Login from '@/components/Login'
 import Register from '@/components/Register'
 import Referring from '@/components/Referring'
@@ -17,9 +17,9 @@ export default new Router({
       component: HelloWorld
     },
     {
-      path: '/index',
-      name: 'Index',
-      component: Index
+      path: '/logout',
+      name: 'Out',
+      component: Out
     },
     {
       path: '/register',

@@ -22,8 +22,8 @@
         <th>time</th>
         <th>remarks</th>
         <th>money</th>
-        <tr v-for="show_list">
-
+        <tr v-for="item in show_list">
+          {{item}}
         </tr>
       </table>
     </div>
@@ -41,6 +41,9 @@
         show_list:[],
       }
     },
+    component:{
+
+      },
     methods: {
       submit: function () {
         let data = {
@@ -56,13 +59,12 @@
         }
         let params_str = qs.stringify(data)
         console.log(params_str, typeof(params_str))
-
         this.axios.get('http://localhost:5000/api/v1/bill', params_str).then(
           function (response) {
             console.log(response.data)
             console.log(response.status)
             console.log(response.config)
-            let data_obj = response.data
+            this.show_list = response.data
           }
         ).catch(
           function (error) {

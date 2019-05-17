@@ -52,7 +52,7 @@
     <ul>
       <li>
         <a
-          href="http://router.vuejs.org/"
+          href="http://localhost:8080/#/logout"
           target="_blank"
         >
           vue-router
